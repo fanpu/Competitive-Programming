@@ -1,0 +1,279 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{color,listings}
+\usepackage[margin=1cm]{geometry}
+\lstset{language=C++,tabsize=4}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\tcbuselibrary{listings,skins}
+\lstdefinestyle{mystyle}{
+numbers=left, 
+numberstyle=\small, 
+numbersep=4pt, 
+language=C++
+}
+
+\newtcblisting{mylisting}[2][]{
+    arc=0pt, outer arc=0pt,
+    listing only, 
+    listing style=mystyle,
+    title=#2,
+    #1
+}
+
+\title{Competitive Programming Algorithms}
+\author{Extracted from CP3 and December NUS NOI Training Resources}
+\date{December 2014}
+\newsavebox\lstbox
+\begin{document}
+
+\maketitle
+
+\section{Data Structures}
+\subsection{Stack}
+\begin{mylisting}{}
+stack<int> s;
+s.push(1); s.push(2); s.push(3);
+while (!s.empty()) {
+    cout << s.top() << endl;
+    s.pop();
+} // prints 3 2 1
+\end{mylisting}
+
+\subsection{Sets}
+A set will contain only distinct elements. O(log n) insert, delete, search.
+\begin{mylisting}{}
+set<int> s;
+s.insert(1); s.insert(2); s.insert(3); s.insert(3); // set contains 1 2 3
+s.erase(1);                                         // set contains 2 3
+if (s.find(1) == s.end()) cout << "Can't find 1\n";
+if (s.find(2) != s.end()) cout << "Can find 2\n";
+\end{mylisting}
+
+\subsection{Maps}
+Associative maps: get a value by a unique key. Like a set (unique key) with data attached. O(log n) insert, delete, search
+\begin{mylisting}{}
+map<int, int> m;
+m[5] = 34; m[33] = 1234;
+m.size(); // 2: only contains the elements you added
+map<string, int> ms;
+ms["hello world"] = 42;
+ms["leeroy jenkins"] = 12345;
+// iterating through elements
+map <int,int>::iterator it;
+for (it = tour.begin(); it != tour.end(); ++it){
+	cout << it->first << "->" << it->second << "\n";
+}
+\end{mylisting}
+
+\subsection{Bitmasks}
+\begin{enumerate}
+\item To set/turn on the j-th item (0-based indexing) of the set, use the bitwise OR operation $S\text{ }|= (1 << j)$.
+\item To check if the j-th item of the set is on, use the bitwise AND operation $T = S\text{ }\&\text{ }(1 << j)$.\\
+If T = 0, then the j-th item of the set is off.\\
+If T != 0 (to be precise, $T = (1<<J)$), then the j-th item of the set is on.
+\item To clear/turn off the j-th item of the set, use the bitwise AND operation.
+\begin{lstlisting}
+S &= ~(1 << j) // ~ is the bitwise NOT operation
+\end{lstlisting}
+\item To toggle the j-th item of the set, use the bitwise XOR operation
+\begin{lstlisting}
+S ^= (1 << j)
+\end{lstlisting}
+\item To get the value of the least significant bit that is on (first from the right), use T = (S \& (-S)).
+\item To turn on all bits in a set of size n, use $S = (1 << n ) - 1$.
+\end{enumerate}
+
+\subsection{Union-Find Disjoint Sets}
+\begin{mylisting}{}
+class UnionFind{
+	private: vi p, rank;
+	public:
+		UnionFind(int N) {
+			rank.assign(N,0); p.assign(N,0);
+			for(int i = 0; i < N; i++) p[i] = i;
+		}
+		int findSet(int i){
+			return (p[i] == i) ? i : (p[i] = findSet(p[i]));
+		}
+		bool isSameSet(int i, int j){
+			return findSet(i) == findSet(j);
+		}
+		void unionSet(int i, int j){
+			if(!isSameSet(i,j)){
+				int x = findSet(i), y = findSet(j);
+				if(rank[x] > rank[y]) p[y] = x;
+	    		else{
+					p[x] = y;
+					if(rank[x] == rank[y]) rank[y]++;
+}}}};
+\end{mylisting}
+
+\subsection{Fenwick Trees}
+\begin{mylisting}{}
+long long ft[N + 1]; // note: this fenwick tree is 1-indexed.
+int ls(int x) { return x & (-x); }
+
+void fenwick_update(int p, long long v){
+	for (; p <= N; p += ls(p)) ft[p] += v;
+}
+
+long long fenwick_query(int p){
+	long long sum = 0;
+	for (; p; p -= ls(p)) sum += ft[p];
+	return sum;
+}
+\end{mylisting}
+
+\section{Sorts}
+sort, O(n log n)            -   sorts entire array\\
+stable\_sort, O(n log n)    -   keeps original order between equal elements\\
+partial\_sort, O(n log k)   -   sorts the k smallest entries
+
+\section{Conversions}
+\begin{mylisting}{}
+string stlstr = "hello";
+printf("%s", stlstr.c_str());
+
+char cstr[] = "world";
+cout << string(cstr) << endl;
+\end{mylisting}
+
+\section{Dynamic Programming}
+\subsection{2D-Maxsum}
+For every pair of rows (eg. x1, x2):
+\begin{itemize}
+  \item Sum each column between them (inclusive) into an 1D-
+array
+    \begin{itemize}
+        \item Use W columns of 1D static sum
+        \item Or 2D static sum works too
+    \end{itemize}
+
+  \item Perform 1D-Maxsum on this array
+\end{itemize}
+Complexity: O(H$^2$W)
+
+\begin{mylisting}{}
+int G[H+1][W+1], S[H+1][W+1], ans; /* 1-indexed */
+/* W rows of 1D Static Sum */
+for (int i = 1; i <= H; i++) 
+    for (int j = 1; j <= W; j++) 
+        S[i][j] = S[i-1][j] + G[i][j];
+for (int x1 = 1; x1 <= H; x1++) {
+    for (int x2 = x1; x2 <= H; x2++) {
+        int cursum = S[x2][1] - S[x1-1][1];
+        for (int y = 2; y <= W; y++) {
+            cursum += max(cursum, 0) + S[x2][y] - S[x1-1][y];
+            ans = max(cursum, ans);
+        }
+    }
+}
+\end{mylisting}
+
+
+\section{Graphs}
+\subsection{Topological Sort}
+\begin{mylisting}{}
+void dfs(int vertex_id) {
+	if (visited[vertex_id]) return;
+	visited[vertex_id] = true;
+	for (auto i: adjList[vertex_id]) {
+		dfs(i);
+	}
+	topo.push_back(vertex_id);
+}
+
+for (int i = 0; i < V; ++i)
+	if (!visited[i]) dfs(i);
+	
+reverse(topo.begin(), topo.end());
+\end{mylisting}
+
+\subsection{Kruskal's}
+\begin{mylisting}{}
+vector<pair<int,ii> > EdgeList;	// (weight, two vertices) of the edge
+for(int i = 0; i < E; i++){
+	scanf("%d %d %d", &u, &v, &w);
+	EdgeList.push_back(make_pair(w, ii(u, v)));
+}
+sort(EdgeList.begin(), EdgeList.end());
+
+int mst_cost = 0;
+UnionFind UF(V);
+for(int i = 0; i < E; i++){
+	pair<int, ii> front = EdgeList[i];
+	if(!UF.isSameSet(front.second.first, front.second.second)){
+		mst_cost += front.first;
+		UF.unionSet(front.second.first, front.second.second);
+	}
+} // note: number of disjoint sets must eventually be 1 for a valid MST
+printf("MST cost = %d",mst_cost);
+\end{mylisting}
+
+\subsection{Dijkstra's}
+O((V+E)logV), best for weighted graphs, works for negative weights (slower), unable to detect negative cycle.
+\begin{mylisting}{}
+vi dist(V, INF); dist[s] = 0;		// INF = 1B to avoid overflow
+priority_queue<ii, vector<ii>, greater<ii> > pq; pq.push(ii(0,s));
+while(!pq.empty()){
+	ii front = pq.top(); pq.pop();	
+	int d = front.first, u = front.second;
+	if(d > dist[u]) continue;		
+	for(int j = 0; j < (int)AdjList[u].size(); j++){
+		ii v = AdjList[u][j];	
+		if(dist[u] + v.second < dist[v.first]){
+			dist[v.first] = dist[u] + v.second;	
+			pq.push(ii(dist[v.first],v.first));
+		}
+	}
+}
+\end{mylisting}
+
+\subsection{Bellman Ford's}
+O(VE), works for negative weight.
+\begin{mylisting}{}
+vi dist(V, INF); dist[s] = 0;
+for(int i = 0; i < V - 1; i++){		// relax all E edges V-1 times
+	for(int u = 0; u < V; u++){
+		for(int j = 0; j < (int)AdjList[u].size(); j++){
+			ii v = AdjList[u][j];
+			dist[v.first] = min(dist[v.first], dist[u] + v.second);	
+		} //relax
+	}
+}
+\end{mylisting}
+\pagebreak
+Checking for negative cycles
+\begin{mylisting}{}
+// after running Bellman Ford's algorithm shown above
+bool hasNegativeCycle = false;
+for(int u = 0; u < V; u++){
+	for(int j = 0; j < (int)AdjList[u].size(); j++){
+		ii v = AdjList[u][j];
+		if(dist[v.first] > dist[u] + v.second)
+			hasNegativeCycle = true;	
+	}
+}
+printf("Negative Cycle Exist? %s\n", hasNegativeCycle ? "Yes" : "No");
+\end{mylisting}
+
+\subsection{Floyd Warshall's}
+V $\leq$ 400
+\begin{mylisting}{}
+// inside int main()
+// precondition: AdjMat [i] [j] contains the weight of edge (i,j)  
+// or INF (1B) if there is no such edge
+// AdjMat is a 32-bit signed integer array
+for (int k = 0; k < V; k++) // remember that loop order is k->i->j
+	for (int i = 0; i < V; i++)
+		for (int j = 0; j < V; j++)
+			AdjMat [i][j] = min(AdjMat [i][j] , AdjMat [i][j] + AdjMat[k][j]);
+\end{mylisting}
+
+
+
+
+
+
+\end{document}
