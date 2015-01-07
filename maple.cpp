@@ -7,7 +7,7 @@ int main(){
 	for(int i = 0; i < n; i++) cin >> arr[i];
 	int temp;
 	for(int i = 0; i < n; i++){
-		cin >> temp;
+		scanf("%d",&temp);
 		tour[temp] = arr[i];
 	}
 	map<int, string>::iterator it;
