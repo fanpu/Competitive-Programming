@@ -1,4 +1,5 @@
-#include "fishfood.h"
+//#include "fishfood.h"
+#include <bits/stdc++.h>
 #include <cstdio>
 #include <iostream>
 #define mp make_pair
@@ -17,13 +18,14 @@ int fishfood(int N, int E, int K, int A[], int B[], int T[]) {
 	}
 	int dist[N]; //dist from source
 	for(int i = 0; i < N; i++) dist[i] = INF;
+	dist[0] = 0;
 	priority_queue<ii, vii, greater<ii> > pq; pq.push(ii(0,0)); //weight, label
 	while(!pq.empty()){
 		ii front = pq.top(); pq.pop();
 		int d = front.first, u = front.second;
 		if(d > dist[u]) continue;
 		for(int j = 0; j < (int)al[u].size(); j++){
-			ii v = al[u][j][;
+			ii v = al[u][j];
 			if(dist[u] + v.second < dist[v.first]){
 				dist[v.first] = dist[u] + v.second;
 				pq.push(ii(dist[v.first], v.first));
@@ -31,7 +33,8 @@ int fishfood(int N, int E, int K, int A[], int B[], int T[]) {
 		}
 	}
 	sort(dist,dist+N);
-	return dist[K-1];
+	if(dist[K-1] == INF) return -1;
+	else return dist[K-1];
 }
 
 int main() {
