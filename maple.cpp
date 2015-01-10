@@ -1,17 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 	int n; cin >> n;
-	string arr[n];
-	map<int,string> tour;
-	for(int i = 0; i < n; i++) cin >> arr[i];
-	int temp;
+	pair<int,char[21]> arr[n];
+	for(int i = 0; i < n; i++) cin >> arr[i].second;
 	for(int i = 0; i < n; i++){
-		scanf("%d",&temp);
-		tour[temp] = arr[i];
+	    cin >> arr[i].first;
 	}
-	map<int, string>::iterator it;
-	for (it = tour.begin(); it != tour.end(); ++it) {
-		cout << it->second << "\n";
-	}
+	sort(arr,arr+n);
+	for(int i = 0; i < n; i++) cout << arr[i].second  << "\n";
 }
