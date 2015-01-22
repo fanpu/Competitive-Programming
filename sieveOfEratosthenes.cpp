@@ -1,3 +1,7 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+typedef vector<int> vi;
 ll sieveSize;
 bitset<10000010> bs;
 vi primes; // list of primes
@@ -11,11 +15,11 @@ void sieve(ll upperbound){	// create list of primes in [0..upperbound]
 		for(ll j = i * i; j <= sieveSize; j += i) bs[j] = 0;
 		primes.push_back(i);
 }}
-
-bool isPrime(ll N){
+	
+bool isPrime(ll N){	// a good enough deterministic prime tester
 	if(N <= sieveSize) return bs[N];
 	for(int i = 0; i < (int)primes.size(); i++)
-		if(N % primes[i] == 0) return false; // a good enough deterministic prime tester
+		if(N % primes[i] == 0) return false;
 	return true;
 }	// only works for N <= (last prime in vi "primes")^2
 

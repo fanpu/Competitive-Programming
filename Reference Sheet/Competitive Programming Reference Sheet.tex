@@ -111,14 +111,13 @@ class UnionFind{
 
 \subsection{Fenwick Trees}
 \subsubsection{Implementation theory}
-\textit{Querying}\\
+\paragraph{Querying}
 To query the range from 1 to i, add the buckets at position:\\
 \(p_0 = i,\)\\
 \(p_1 = p_0 - \text{ size of bucket } p_0,\)\\
 \(p_2 = p_1 - \text{ size of bucket } p_1,etc\)\\
-Subtract size of bucket until 0 \newline
-
-\textit{Updating}\\
+Subtract size of bucket until 0
+\paragraph{Updating}
 To update, the ranges that contain i are:\\
 \(p_0 = i,\)\\
 \(p_1 = p_0 + \text{ size of bucket } p_0\)\\
@@ -183,6 +182,19 @@ for (int x1 = 1; x1 <= H; x1++) {
             ans = max(cursum, ans);
         }
     }
+}
+\end{mylisting}
+
+\subsection{Lowest Common Substring}
+To recover LCS: start from lcs[N][M] and work backwards.
+\begin{mylisting}{}
+int lcs[1001][1001], A[1001], B[1001]; // A and B are 1-indexed here
+for (int i = 0; i <= N; ++i) {
+	for (int j = 0; j <= M; ++j) {
+		if (i == 0 || j == 0) lcs[i][j] = 0;
+		if (A[i] == B[j]) lcs[i][j] = 1 + lcs[i - 1][j - 1];
+		else lcs[i][j] = max(lcs[i][j - 1], lcs[i - 1][j]);
+	}
 }
 \end{mylisting}
 
@@ -287,8 +299,73 @@ for (int k = 0; k < V; k++) // remember that loop order is k->i->j
 \end{mylisting}
 
 
+\section{Mathematics}
+\subsection{Modular Arithmetic}
+\[ a \equiv b (mod m) \leftrightarrow a - b \equiv 0 (mod m),\]
+\[k * m \equiv 0 (mod m),\]
+\[a * c \equiv b * c (mod m) \leftrightarrow a \equiv b (mod m)\]
+if m and c are coprime because of Euclid’s lemma: If a prime divides the product of two numbers, it must divide at least one of those numbers.
+\subsection{Fast Exponentiation}
+\begin{mylisting}{}
+int fastExp(ll base, ll p){
+	if(p==0) return 1;
+	else if(p==1) return base;
+	else{
+		ll res = fastExp(base,p/2);
+		res *= res;
+		res %= MOD;
+		if(p%2==1) res *= base%MOD;
+		return res%MOD;
+		}
+}
+\end{mylisting}
+
+\subsection{GCD}
+Euclid’s algorithm, O(log N) time.
+\begin{mylisting}{}
+ll gcd(ll a, ll b){
+	if(b == 0) return a;
+	if(a > b) return gcd(b, a%b);
+	if(b > a) return gcd(b, a);
+}
+\end{mylisting}
+
+\subsection{LCM}
+\[lcm(m,n)=\frac{|m \cdot n|}{gcd(m,n)}\]
+LCM can also be found by merging the prime decompositions of both \(m\) and \(n\). 
+
+\subsection{Sieve of Eratosthenes}
+\begin{mylisting}{}
+ll sieveSize;
+bitset<10000010> bs;
+vi primes; // list of primes
+
+void sieve(ll upperbound){	// create list of primes in [0..upperbound]
+	sieveSize = upperbound + 1;	// add 1 to include upperbound
+	bs.set();	// set all bits to 1
+	bs[0] = bs[1] = 0;	// except index 0 and 1
+	for(ll i = 2; i <= sieveSize; i++) if (bs[i]){
+		// cross out multiples of i starting from i * i
+		for(ll j = i * i; j <= sieveSize; j += i) bs[j] = 0;
+		primes.push_back(i);
+}}
+	
+bool isPrime(ll N){	
+	if(N <= sieveSize) return bs[N];
+	for(int i = 0; i < (int)primes.size(); i++)
+		if(N % primes[i] == 0) return false; // a good enough deterministic prime tester
+	return true;
+}	// only works for N <= (last prime in vi "primes")^2
+
+int main(){
+	sieve(10000000);
+	printf("%d\n", isPrime(2147483647));	// return true
+	printf("%d\n", isPrime(136117223861));	// return false
+}
+\end{mylisting}
 
 
 
 
 \end{document}
+
