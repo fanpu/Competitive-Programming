@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.7)  7 JAN 2015 23:33
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.7)  22 JAN 2015 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -833,24 +833,29 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
  (./Competitive Programming Reference Sheet.listing)
-\openout4 = `"Competitive Programming Reference Sheet.listing"'.
+Underfull \hbox (badness 10000) in paragraph at lines 114--120
 
-(./Competitive Programming Reference Sheet.listing)
-\openout4 = `"Competitive Programming Reference Sheet.listing"'.
+ []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--126
+
+ []
+
+\openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 (./Competitive Programming Reference Sheet.listing) [2]
+\openout4 = `"Competitive Programming Reference Sheet.listing"'.
+
+
+(./Competitive Programming Reference Sheet.listing)
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
 (./Competitive Programming Reference Sheet.listing
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1.
-)
-\openout4 = `"Competitive Programming Reference Sheet.listing"'.
-
-
-(./Competitive Programming Reference Sheet.listing) [3]
+) [3]
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
@@ -866,6 +871,10 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
+(./Competitive Programming Reference Sheet.listing) [5]
+\openout4 = `"Competitive Programming Reference Sheet.listing"'.
+
+
 (./Competitive Programming Reference Sheet.listing)
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
@@ -873,12 +882,12 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (./Competitive Programming Reference Sheet.listing
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 5.
-) [5]
+) [6]
 (./Competitive Programming Reference Sheet.aux) ) 
 Here is how much of TeX's memory you used:
  14642 strings out of 493304
  261334 string characters out of 6139872
- 363109 words of memory out of 5000000
+ 374109 words of memory out of 5000000
  17780 multiletter control sequences out of 15000+600000
  9668 words of font info for 35 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -893,11 +902,11 @@ cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Competitive Programming Reference Sheet.pdf" (5 pages, 14374
-9 bytes).
+Output written on "Competitive Programming Reference Sheet.pdf" (6 pages, 14822
+2 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

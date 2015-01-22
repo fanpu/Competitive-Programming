@@ -22,8 +22,8 @@ language=C++
 }
 
 \title{Competitive Programming Algorithms}
-\author{Extracted from CP3 and December NUS NOI Training Resources}
-\date{December 2014}
+\author{Extracted from CP3 and December Algorithmics IOI Training Resources}
+\date{January 2015}
 \newsavebox\lstbox
 \begin{document}
 
@@ -110,8 +110,23 @@ class UnionFind{
 \end{mylisting}
 
 \subsection{Fenwick Trees}
+\subsubsection{Implementation theory}
+\textit{Querying}\\
+To query the range from 1 to i, add the buckets at position:\\
+\(p_0 = i,\)\\
+\(p_1 = p_0 - \text{ size of bucket } p_0,\)\\
+\(p_2 = p_1 - \text{ size of bucket } p_1,etc\)\\
+Subtract size of bucket until 0 \newline
+
+\textit{Updating}\\
+To update, the ranges that contain i are:\\
+\(p_0 = i,\)\\
+\(p_1 = p_0 + \text{ size of bucket } p_0\)\\
+\(p_2 = p_1 + \text{ size of bucket } p_1, etc \) \\
+
+
 \begin{mylisting}{}
-long long ft[N + 1]; // note: this fenwick tree is 1-indexed.
+long long ft[N + 1]; // note: Fenwick tree must be 1-indexed.
 int ls(int x) { return x & (-x); }
 
 void fenwick_update(int p, long long v){
