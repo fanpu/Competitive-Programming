@@ -16,10 +16,10 @@ void sieve(ll upperbound){	// create list of primes in [0..upperbound]
 		primes.push_back(i);
 }}
 	
-bool isPrime(ll N){	// a good enough deterministic prime tester
+bool isPrime(ll N){	
 	if(N <= sieveSize) return bs[N];
 	for(int i = 0; i < (int)primes.size(); i++)
-		if(N % primes[i] == 0) return false;
+		if(N % primes[i] == 0) return false; // a good enough deterministic prime tester
 	return true;
 }	// only works for N <= (last prime in vi "primes")^2
 

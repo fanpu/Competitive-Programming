@@ -320,17 +320,13 @@ int fastExp(ll base, ll p){
 }
 \end{mylisting}
 
-\subsection{GCD}
-Euclid’s algorithm, O(log N) time.
+\subsection{GCD and LCM}
 \begin{mylisting}{}
-ll gcd(ll a, ll b){
-	if(b == 0) return a;
-	if(a > b) return gcd(b, a%b);
-	if(b > a) return gcd(b, a);
-}
+//Euclid's algorithm, O(log N) time.
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a%b);}
+int lcm(int a, int b) { return a * (b / gcd(a, b)); }
 \end{mylisting}
 
-\subsection{LCM}
 \[lcm(m,n)=\frac{|m \cdot n|}{gcd(m,n)}\]
 LCM can also be found by merging the prime decompositions of both \(m\) and \(n\). 
 

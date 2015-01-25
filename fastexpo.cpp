@@ -9,9 +9,9 @@ int fastExp(ll base, ll p){
 	else{
 		ll res = fastExp(base,p/2);
 		res *= res;
-		res %= m;
-		if(p%2==1) res *= base%m;
-		res %= m;
+		res %= MOD;
+		if(p%2==1) res *= base%MOD;
+		res %= MOD;
 		return res;
 		}
 }
