@@ -7,16 +7,13 @@
 #define mp make_pair
 #define ll long long
 #define INF 2000000000
-
 using namespace std;
 typedef vector<int> vi;
 typedef pair<int,int> ii;
-
 bool comp(pair<int,ii> lhs, pair<int,ii> rhs){
      if(lhs.second.first < rhs.second.first) return true;
      else return false;
 }
-
 class UnionFind{
       private: vi p, rank;
       public:
@@ -41,12 +38,10 @@ class UnionFind{
                     }
                }
 };
-
 vector<pair<int, ii> > edgeList;
 typedef vector<ii> vii;
 typedef vector<vii> adjList;
 adjList minEdge; //v1, v2, quality
-
 int main(){
     int v,e,q; cin >> v >> e >> q;
     int v1, v2, quality;
@@ -70,17 +65,9 @@ int main(){
     }
     vi dist(v+1, 0); dist[1] = INF;
     priority_queue<ii, vector<ii>, greater<ii> > pq; pq.push(ii(INT_MAX,1));
-    /*
-    for(int i = 0; i < minEdge.size(); i++){
-		for(int j = 0; j < minEdge[i].size(); j++){
-			ii front = minEdge[i][j];
-			cout << "At node " << i << ", my neighbour is node " << front.first << " with a weight of "<< front.second << endl;
-		}
-	}*/
     while(!pq.empty()){
 		ii front = pq.top(); pq.pop();
 		int d = front.first, u = front.second;
-		//if ( d < dist[u]) continue;
 		for(int j = 0; j < (int) minEdge[u].size(); j++){
 			ii v = minEdge[u][j];
 			if(min(dist[u], v.second) > dist[v.first]){
@@ -89,7 +76,6 @@ int main(){
 			}
 		}
 	}
-	//for(int i = 1; i <= v; i++) cout << "dist[ " << i << "] is " << dist[i] << endl;
 	int temp;
 	for(int i = 0; i < q; i++){
             scanf("%d",&temp);
@@ -97,14 +83,3 @@ int main(){
     }
                                             
 }
-/*
-
-4 4 2
-1 2 10
-1 3 30
-2 4 20
-3 4 5
-3
-4
-
-*/
