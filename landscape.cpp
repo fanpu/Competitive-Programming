@@ -12,35 +12,43 @@ int main(){
 			ls.push(mp(temp,i));
 		} else{
 			a = ls.top();
-			if(temp > a.first) ls.push(mp(temp,i));
+			if(temp > a.first){
+				ls.push(mp(temp,i));
+				continue;
+			} else if (temp == a.first) continue;
 			while(temp < a.first){
+				//cout << "temp is " << temp << endl;
+				//cout << "a.first is " << a.first << endl;
 				area = max(area, (i-a.second)*a.first);
 				//cout << "Current area is " << area << " at i = " << i << endl;
 				ls.pop(); 
+				//cout << "Popped an element " << a.first << endl;
 				if(ls.size()==0){
 					ls.push(mp(temp,i));
+					//cout << "lel\n";
 					break;
 				}
 				a = ls.top();
 				if(temp > a.first){
+					//cout << "hi\n";
 					ls.push(mp(temp,i));
 					break;
 				}
-				else if (temp == ls.top().first) break;
+				else if (temp == a.first) break;
 			}
 		}
 	}
 	while(ls.size() > 0){
 		a = ls.top(); ls.pop();
 		area = max(area, (n-a.second)*a.first);
-		//cout << "area is " << area << endl;
+		//cout << "area is " << area << " with height " << a.first << endl;
 	}
 	cout << area << endl;
 }
 
 /*
 
-15
-1 2 2 2 1 1 2 2 2 1 5 5 5 0 0
+25
+1 2 2 2 1 1 2 2 2 1 5 5 5 0 0 1 2 3 4 5 6 7 8 9 10
  
 */
