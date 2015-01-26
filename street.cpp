@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {   
-    freopen("input.txt","r",stdin);
+    //freopen("in.txt","r",stdin);
     int n,k,t; cin >> n >> k >> t;
     int restriction[n+1];
     for(int i = 1; i <= n; i++) scanf("%d",&restriction[i]);
@@ -14,15 +14,22 @@ int main()
         for(int j = 1; j <= k; j++){
             int minHeight = restriction[i];
             int maxArea = 0;
-            for(int a = 0; a <= i && a < t; a++){
+            for(int a = 0; a < i  && a < t; a++){
+            	cout << "i is " << i << " and j is " << j << endl;
                 minHeight = min(minHeight, restriction[i-a]);
-                maxArea = max(maxArea, minHeight*(a+1) + dp[i-a][j-1]);
+                maxArea = max(maxArea, minHeight*(a+1) + dp[i-a-1][j-1]);
+                cout << "current minheight is " << minHeight << " and maxarea is " << maxArea << endl;
             }
             dp[i][j] = max(maxArea, dp[i-1][j]);
         }
         
     }
+    for(int i = 1; i <= n; i++){
+   		for(int j = 1; j <= k; j++){
+   			cout << dp[i][j] << " ";
+   		}cout << endl;
+   	}
     cout << dp[n][k];
-    
    return 0;
 }
+
