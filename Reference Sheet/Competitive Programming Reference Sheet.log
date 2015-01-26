@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.7)  26 JAN 2015 19:16
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.7)  26 JAN 2015 20:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -870,7 +870,15 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
+(./Competitive Programming Reference Sheet.listing)
+\openout4 = `"Competitive Programming Reference Sheet.listing"'.
+
+
 (./Competitive Programming Reference Sheet.listing) [5]
+\openout4 = `"Competitive Programming Reference Sheet.listing"'.
+
+
+(./Competitive Programming Reference Sheet.listing) [6]
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
@@ -889,7 +897,7 @@ LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
-(./Competitive Programming Reference Sheet.listing) [6]
+(./Competitive Programming Reference Sheet.listing) [7]
 \openout4 = `"Competitive Programming Reference Sheet.listing"'.
 
 
@@ -898,12 +906,12 @@ Overfull \hbox (1.9138pt too wide) in paragraph at lines 18--19
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) [7] (./Competitive Programming Reference Sheet.aux) ) 
+) [8] (./Competitive Programming Reference Sheet.aux) ) 
 Here is how much of TeX's memory you used:
- 14699 strings out of 493304
- 262245 string characters out of 6139872
- 371109 words of memory out of 5000000
- 17829 multiletter control sequences out of 15000+600000
+ 14725 strings out of 493304
+ 262675 string characters out of 6139872
+ 370109 words of memory out of 5000000
+ 17851 multiletter control sequences out of 15000+600000
  9668 words of font info for 35 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  55i,6n,76p,864b,1585s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -917,11 +925,11 @@ ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "Competitive Programming Reference Sheet.pdf" (7 pages, 15741
-7 bytes).
+Output written on "Competitive Programming Reference Sheet.pdf" (8 pages, 16208
+0 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
