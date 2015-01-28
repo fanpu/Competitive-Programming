@@ -4,10 +4,11 @@ using namespace std;
 #define ll long long
 typedef pair<ll,ll> ii;
 int main(){
+	freopen("input.txt","r",stdin);
 	stack<ii> ls;
 	int n, temp; ll area = 0; ii a; cin >> n;
-	for(int i = 0; i < n; i++){
-		scanf("%d",&temp);
+	int i = 0;
+	while(cin >> temp){
 		if(ls.size()==0){
 			ls.push(mp(temp,i));
 		} else{
@@ -37,6 +38,7 @@ int main(){
 				else if (temp == a.first) break;
 			}
 		}
+		i++;
 	}
 	while(ls.size() > 0){
 		a = ls.top(); ls.pop();
