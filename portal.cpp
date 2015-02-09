@@ -92,10 +92,10 @@ int main(){
 					al[i*j+j].push_back(iii(ii(i+a[k],j+b[k]),1));
 				}
 			}
-			al[i*j+j].push_back(iii(ii(i-arr[i][j][0],j),arr[i][j][0]));
-			al[i*j+j].push_back(iii(ii(i+arr[i][j][1],j),arr[i][j][1]));
-			al[i*j+j].push_back(iii(ii(i,j-arr[i][j][2]),arr[i][j][2]));
-			al[i*j+j].push_back(iii(ii(i,j+arr[i][j][3]),arr[i][j][3]));
+			al[i*j+j].push_back(iii(ii(i-arr[i][j][0]+1,j),dist[i][j]));
+			al[i*j+j].push_back(iii(ii(i+arr[i][j][1]-1,j),dist[i][j]));
+			al[i*j+j].push_back(iii(ii(i,j-arr[i][j][2]+1),dist[i][j]));
+			al[i*j+j].push_back(iii(ii(i,j+arr[i][j][3]-1),dist[i][j]));
 		}
 	}
 	int distance[n][n];
@@ -111,19 +111,22 @@ int main(){
 		pair<int,pair<int,int> > front = pq.top(); pq.pop();
 		int d = front.first, u1 = front.second.first, u2 = front.second.second;
 		if(d > distance[u1][u2]) continue;
-		cout << al[u1*u2+u2].size() << endl;
+		//cout << al[u1*u2+u2].size() << endl;
 		for(int j = 0; j < (int)al[u1*u2+u2].size(); j++){
 			iii v = al[u1*u2+u2][j];
+			//cout << "v.second is " << v.second << endl;
 			if(distance[u1][u2] + v.second < distance[v.first.first][v.first.second]){
-				dist[v.first.first][v.first.second] = dist[u1][u2] + v.second;
-				pq.push(mp(dist[v.first.first][v.first.second],mp(v.first.first,v.first.second)));
+				distance[v.first.first][v.first.second] = distance[u1][u2] + v.second;
+				pq.push(mp(distance[v.first.first][v.first.second],mp(v.first.first,v.first.second)));
 			}
 		}
 	}
+	/*
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < n; j++){
-			cout << distance[i][j] << " ";
+			if(distance[i][j] == INF) cout << "X" << " ";
+			else cout << distance[i][j] << " ";
 		} cout << endl;
-	}
+	}*/
 	cout << distance[end.first][end.second];
 }
