@@ -12,10 +12,13 @@ int main(){
   change -= numToUse20 * 20;
   int numToUse10 = change/10;
   numToUse10 = min(numToUse10, arr[1]);
-  change -= numToUse10 * 10;
+  change -= numToUse10;
   int numToUse5 = change/5;
   numToUse5 = min(numToUse5, arr[0]);
-  change -= numToUse5 * 5;
+  change -= numToUse5;
+  cout << change << endl;
+  cout << numToUse5 << " " << numToUse10 << " " << numToUse20 << " " << numToUse50 << " " << numToUse5+numToUse10+numToUse20+numToUse50 << endl;
+
   if(change != 0) cout << -1;
   else{
     cout << numToUse5 << " " << numToUse10 << " " << numToUse20 << " " << numToUse50 << " " << numToUse5+numToUse10+numToUse20+numToUse50;

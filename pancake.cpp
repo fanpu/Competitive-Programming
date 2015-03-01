@@ -6,18 +6,21 @@ typedef vector<int> vi;
 
 bool isSorted(vector<int> u){
   bool sorted = true;
-  for(int i = 1; i < (int)u.size(); i++){
-    if(u[i] > u[i-1]){
-		sorted = false;
-		break;
-	}
+  for(int i = 1; i < u.size(); i++){
+    if(u[i] > u[i-1]) sorted = false;
   }
   return sorted;
 }
 
 int main(){
+  int b;
+  cout << "yo\n";
+  cin >> b; 
   ios::sync_with_stdio(0);
-  signed char memo[8][8][8][8][8][8][8][8];
+  int memo[8][8][8][8][8][8][8][8];
+  cout << "hi\n";
+  int a;
+  cin >>a; 
   int tc; cin >> tc;
   int n;
   pair<int,int> arr[8];
