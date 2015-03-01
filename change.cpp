@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+  int arr[4]; for(int i = 0; i < 4; i++) cin >> arr[i];
+  int change; cin >> change;
+  // clearing 50 cents
+  int numToUse50 = change/50;
+  numToUse50 = min(numToUse50, arr[3]);
+  change -= numToUse50 * 50;
+  int numToUse20 = change/20;
+  numToUse20 = min(numToUse20, arr[2]);
+  change -= numToUse20 * 20;
+  int numToUse10 = change/10;
+  numToUse10 = min(numToUse10, arr[1]);
+  change -= numToUse10;
+  int numToUse5 = change/5;
+  numToUse5 = min(numToUse5, arr[0]);
+  change -= numToUse5;
+  if(change != 0) cout << 0;
+  else{
+    cout << numToUse5 << " " << numToUse10 << " " << numToUse20 << " " << numToUse50 << " " << numToUse5+numToUse10+numToUse20+numToUse50;
+  }
+}
