@@ -12,7 +12,6 @@ int main(){
   for(int i = 0; i < n-d+1; i++){
     cin >> s;
     for(int j = 1; j < s.length(); j++){
-      cout << s[j-1] - 'A' << " " << s[j]-'A' << endl;
       arr[s[j-1]-'A'][s[j]-'A'] += 1;
     }
   }
@@ -30,5 +29,5 @@ int main(){
     }
       
   }
-  cout << day1 << " " << dayN;
+  cout << day1 << dayN;
 }
