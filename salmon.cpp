@@ -12,16 +12,26 @@ CNY Gift Box	2888	630
 dp: find the best possible value for each number of salmon
 cycle thru each item, and see if it would result in a better combi if used
 */
-	int salmonRequired[] = {1,2,17,179,630};
+	ios::sync_with_stdio(0);
+	int salmonRequired[] = {1,2,17,179,809};
 	int price[] = {2,7,60,588,2888};
 	int n; cin >> n;
-	int bestVal[n+1]; memset(bestVal, 0, sizeof bestVal);
-	bestVal[0] = 0;
-	int combiChosen[5]; memset(combiChosen, 0, sizeof combiChosen);
-	for(int i = 1; i <= n; i++){
+	//int bestVal[n+1]; memset(bestVal, 0, sizeof bestVal);
+	//bestVal[0] = 0; // best price u can get for a given number of sashimi
+	int combiChosen[n+1][6]; memset(combiChosen, 0, sizeof combiChosen); //combiChosen[5] is the new bestVal
+	for(int i = 0; i < 6; i++) combiChosen[0][i] = 0;
+	for(int i = 1; i <= n; i++){ // i: number of sashimi
 		for(int j = 0; j < 5; j++){
-			if(i-price[j] >= 0 && )
+			// if you can get a better price by adding a piece of new food item and subtracting the amount of sashimi required
+			if((i-salmonRequired[j]) >= 0 && combiChosen[i-salmonRequired[j]][5] + price[j] > combiChosen[i][5]
+			&& combiChosen[i-salmonRequired[j]][j] < 1023){
+				combiChosen[i][5] = combiChosen[i-salmonRequired[j]][5] + price[j];
+				// update table
+				for(int k = 0; k < 5; k++) combiChosen[i][k] = combiChosen[i-salmonRequired[j]][k];
+				combiChosen[i][j] += 1;
+			}
+			combiChosen[i][5] = max(combiChosen[i][5], combiChosen[i-1][5]);
 		}
 	}
-	
+	cout << combiChosen[n][5];
 }
