@@ -18,7 +18,7 @@ cycle thru each item, and see if it would result in a better combi if used
 	int n; cin >> n;
 	int bestVal[n+1]; memset(bestVal, 0, sizeof bestVal);
 	bestVal[0] = 0; // best price u can get for a given number of sashimi
-	int combiChosen[n+1][5]; memset(combiChosen, 0, sizeof combiChosen);
+	short combiChosen[n+1][5]; memset(combiChosen, 0, sizeof combiChosen);
 	for(int i = 0; i < 5; i++) combiChosen[0][i] = 0;
 	for(int i = 1; i <= n; i++){ // i: number of sashimi
 		for(int j = 0; j < 5; j++){
