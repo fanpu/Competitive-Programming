@@ -140,6 +140,7 @@ long long fenwick_query(int p){
 \end{mylisting}
 
 \subsection{Policy-Based Data Structure}
+PBDS order statistics tree. Same as std::set and std::map. Supports 2 additional operations: find_by_order(k), returns iterator to k-th smallest element; order_of_key, returns the number of elements smaller than N
 \begin{mylisting}{}
 #include <ext/pb_ds/assoc_container.hpp>	// include these headers
 #include <ext/pb_ds/tree_policy.hpp>
