@@ -159,62 +159,50 @@ typedef tree<
   rb_tree_tag,
   tree_order_statistics_node_update> pbdsSet;
   
-int main()
-{
-  // Insert some entries into s.
-  set_t s;
-  s.insert(12);
-  s.insert(505);
-  s.insert(30);
-  s.insert(1000);
-  s.insert(10000);
-  s.insert(100);
-
-  // The order of the keys should be: 12, 30, 100, 505, 1000, 10000.
-  assert(*s.find_by_order(0) == 12);
-  assert(*s.find_by_order(1) == 30);
-  assert(*s.find_by_order(2) == 100);
-  assert(*s.find_by_order(3) == 505);
-  assert(*s.find_by_order(4) == 1000);
-  assert(*s.find_by_order(5) == 10000);
-  assert(s.find_by_order(6) == s.end());
-
-  // The order of the keys should be: 12, 30, 100, 505, 1000, 10000.
-  assert(s.order_of_key(10) == 0);
-  assert(s.order_of_key(12) == 0);
-  assert(s.order_of_key(15) == 1);
-  assert(s.order_of_key(30) == 1);
-  assert(s.order_of_key(99) == 2);
-  assert(s.order_of_key(100) == 2);
-  assert(s.order_of_key(505) == 3);
-  assert(s.order_of_key(1000) == 4);
-  assert(s.order_of_key(10000) == 5);
-  assert(s.order_of_key(9999999) == 6);
-
-  // Erase an entry.
-  s.erase(30);
-
-  // The order of the keys should be: 12, 100, 505, 1000, 10000.
-  assert(*s.find_by_order(0) == 12);
-  assert(*s.find_by_order(1) == 100);
-  assert(*s.find_by_order(2) == 505);
-  assert(*s.find_by_order(3) == 1000);
-  assert(*s.find_by_order(4) == 10000);
-  assert(s.find_by_order(5) == s.end());
-
-  // The order of the keys should be: 12, 100, 505, 1000, 10000.
-  assert(s.order_of_key(10) == 0);
-  assert(s.order_of_key(12) == 0);
-  assert(s.order_of_key(100) == 1);
-  assert(s.order_of_key(505) == 2);
-  assert(s.order_of_key(707) == 3);
-  assert(s.order_of_key(1000) == 3);
-  assert(s.order_of_key(1001) == 4);
-  assert(s.order_of_key(10000) == 4);
-  assert(s.order_of_key(100000) == 5);
-  assert(s.order_of_key(9999999) == 5);
-
-  return 0;
+\end{mylisting}
+Middlenumber example of PBDS
+\begin{mylisting}
+#include <ext/pb_ds/assoc_container.hpp>	// include these headers
+#include <ext/pb_ds/tree_policy.hpp>
+#include <ext/pb_ds/detail/standard_policies.hpp>
+using namespace std;	// include these namespaces
+using namespace __gnu_pbds;
+#define mp make_pair
+#define ll long long
+typedef tree<
+  pair<ll,ll>,
+  int,
+  less<pair<ll,ll> >,
+  rb_tree_tag,
+  tree_order_statistics_node_update> pbdsSet;
+pbdsSet s;
+int globalCounter = 0;
+int returnMiddleNumber(){
+	if(s.size()%2==0){
+		return (s.find_by_order(s.size()/2) -> first.first + s.find_by_order(s.size()/2-1) -> first.first) / 2;
+	} else return (s.find_by_order(s.size()/2)) ->first.first;
+}
+int init(int* arr, int length){
+	for(int i = 0; i < length; i++){
+		s.insert(mp(mp(arr[i], globalCounter),0));
+		globalCounter++;
+	}
+	return returnMiddleNumber();
+}
+int add_number(int x){
+	s.insert(mp(mp(x, globalCounter), 0));
+	globalCounter++;
+	return returnMiddleNumber();
+}
+int remove_number(int x){
+	s.erase(s.lower_bound(mp(x,0)));
+	return returnMiddleNumber();
+}
+int change_number(int oldx, int newx){
+	s.erase(s.lower_bound(mp(oldx,0)));
+	s.insert(mp(mp(newx, globalCounter), 0));
+	globalCounter++;
+	return returnMiddleNumber();
 }
 \end{mylisting}
 \section{Sorts}
