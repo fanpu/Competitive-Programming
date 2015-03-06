@@ -140,7 +140,11 @@ long long fenwick_query(int p){
 \end{mylisting}
 
 \subsection{Policy-Based Data Structure}
-PBDS order statistics tree. Same as std::set and std::map. Supports 2 additional operations: find_by_order(k), returns iterator to k-th smallest element; order_of_key, returns the number of elements smaller than N
+PBDS order statistics tree. Same as std::set and std::map.
+Supports 2 additional operations:
+find_by_order(k), returns iterator to k-th smallest element;
+order_of_key, returns the number of elements smaller than N. ordered by the key
+All key value pairs must be distinct
 \begin{mylisting}{}
 #include <ext/pb_ds/assoc_container.hpp>	// include these headers
 #include <ext/pb_ds/tree_policy.hpp>
@@ -149,9 +153,9 @@ using namespace std;	// include these namespaces
 using namespace __gnu_pbds
 
 typedef tree<
-  int,
-  null_mapped_type,
-  less<int>,
+  int,			// key
+  null_mapped_type,	// mapped value, replace with int if doesnt compile
+  less<int>,		// comparator for key (same type as key)
   rb_tree_tag,
   tree_order_statistics_node_update> pbdsSet;
   
